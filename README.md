@@ -5,7 +5,7 @@ A ready to go [GLIMPSE](https://odelaneau.github.io/GLIMPSE/) docker image.
 Usage:
 
 ```bash
-docker run -it amanas/glimpse
+docker run -it ghcr.io/amanas/glimpse:1.1.1
 ```
 
 ## Versions
@@ -14,3 +14,10 @@ docker run -it amanas/glimpse
 * [boost](https://www.boost.org/doc/libs/1_73_0/) 1.73.0
 * [bcftools](https://samtools.github.io/bcftools/bcftools.html) 1.9
 * [GLIMPSE](https://odelaneau.github.io/GLIMPSE/installation.html) 1.1.1
+
+## Build and publish
+
+```bash
+docker build . -t ghcr.io/amanas/docker-glimpse:1.1.1
+docker push ghcr.io/amanas/docker-glimpse:1.1.1
+```
