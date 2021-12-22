@@ -17,7 +17,9 @@ docker run -it ghcr.io/amanas/docker-glimpse:1.1.1
 
 ## Build and publish
 
+Just in case you want to fork this repo and create your own distro:
+
 ```bash
-docker build . -t ghcr.io/amanas/docker-glimpse:1.1.1
-docker push ghcr.io/amanas/docker-glimpse:1.1.1
+docker build . -t ghcr.io/<you>/docker-glimpse:<whatever>
+docker push ghcr.io/<you>/docker-glimpse:<whatever>
 ```
