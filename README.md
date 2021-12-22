@@ -1,2 +1,16 @@
-# docker-glimpse
-A ready to go GLIMPSE docker image.
+# Docker GLIMPSE
+
+A ready to go [GLIMPSE](https://odelaneau.github.io/GLIMPSE/) docker image.
+
+Usage:
+
+```bash
+docker run -it amanas/glimpse
+```
+
+## Versions
+
+* [htslib](http://www.htslib.org/) 1.11
+* [boost](https://www.boost.org/doc/libs/1_73_0/) 1.73.0
+* [bcftools](https://samtools.github.io/bcftools/bcftools.html) 1.9
+* [GLIMPSE](https://odelaneau.github.io/GLIMPSE/installation.html) 1.1.1
