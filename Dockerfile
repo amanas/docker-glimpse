@@ -82,5 +82,3 @@ RUN ./step9_script_cleanup.sh
 WORKDIR /
 
 ENTRYPOINT ["/bin/bash"]
-
-# docker build . -t amanas/glimpse
