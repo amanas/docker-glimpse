@@ -5,7 +5,7 @@ A ready to go [GLIMPSE](https://odelaneau.github.io/GLIMPSE/) docker image.
 Usage:
 
 ```bash
-docker run -it ghcr.io/amanas/glimpse:1.1.1
+docker run -it ghcr.io/amanas/docker-glimpse:1.1.1
 ```
 
 ## Versions
