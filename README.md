@@ -5,7 +5,7 @@ A ready to go [GLIMPSE](https://odelaneau.github.io/GLIMPSE/) docker image.
 Usage:
 
 ```bash
-docker run -it --name glimpse ghcr.io/amanas/docker-glimpse:1.1.1_v1
+docker run -it --name glimpse ghcr.io/amanas/docker-glimpse
 ```
 
 ## Versions
@@ -22,6 +22,6 @@ docker run -it --name glimpse ghcr.io/amanas/docker-glimpse:1.1.1_v1
 Just in case you want to fork this repo and create your own distro:
 
 ```bash
-docker build . -t ghcr.io/<you>/docker-glimpse:<whatever>
-docker push ghcr.io/<you>/docker-glimpse:<whatever>
+docker build . -t ghcr.io/<you>/docker-glimpse
+docker push ghcr.io/<you>/docker-glimpse
 ```
