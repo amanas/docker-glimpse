@@ -19,8 +19,11 @@ RUN apt-get update -yq \
     tabix \
     unzip \
     python3 \
-    python3-pip
-
+    python3-pip \
+    libncurses5-dev 
+    
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y      
+      
 RUN python3 -m pip install -U matplotlib==3.2.2
 
 RUN wget -q https://github.com/samtools/htslib/releases/download/1.11/htslib-1.11.tar.bz2 \
@@ -57,6 +60,17 @@ RUN wget -q https://github.com/samtools/bcftools/releases/download/1.9/bcftools-
 
 ENV PATH="$PATH:/bcftools"
 
+RUN wget -q https://github.com/samtools/samtools/releases/download/1.14/samtools-1.14.tar.bz2 \
+ && tar xvjf samtools-1.14.tar.bz2 \
+ && cd samtools-1.14 \
+ && ./configure --prefix=/samtools \
+ && make \
+ && make install \
+ && cd / \
+ && rm -rf samtools-1.14*
+ 
+ENV PATH="$PATH:/samtools/bin"
+
 RUN wget -q https://github.com/odelaneau/GLIMPSE/archive/refs/tags/v1.1.1.zip \
  && unzip v1.1.1.zip \
  && mv GLIMPSE-1.1.1 GLIMPSE \
@@ -67,17 +81,19 @@ RUN wget -q https://github.com/odelaneau/GLIMPSE/archive/refs/tags/v1.1.1.zip \
  && sed -i "s/system: DYN_LIBS=.*/system: DYN_LIBS=-lz -lpthread -lbz2 -llzma -lcurl -lssl -lcrypto/g" /GLIMPSE/sample/makefile \
  && sed -i "s/system: DYN_LIBS=.*/system: DYN_LIBS=-lz -lpthread -lbz2 -llzma -lcurl -lssl -lcrypto/g" /GLIMPSE/concordance/makefile
 
+ENV PATH="$PATH:/GLIMPSE/chunk/bin:/GLIMPSE/concordance/bin:/GLIMPSE/ligate/bin:/GLIMPSE/phase/bin:/GLIMPSE/sample/bin"
+
 WORKDIR /GLIMPSE/tutorial
 
-RUN ./step1_script_setup.sh
-RUN ./step2_script_reference_panel.sh  
-RUN ./step3_script_GL.sh  
-RUN ./step4_script_chunk.sh  
-RUN ./step5_script_impute.sh  
-RUN ./step6_script_ligate.sh  
-RUN ./step7_script_sample.sh  
-RUN ./step8_script_concordance.sh 
-RUN ./step9_script_cleanup.sh
+RUN /GLIMPSE/tutorial/step1_script_setup.sh
+# RUN ./step2_script_reference_panel.sh  
+# RUN ./step3_script_GL.sh  
+# RUN ./step4_script_chunk.sh  
+# RUN ./step5_script_impute.sh  
+# RUN ./step6_script_ligate.sh  
+# RUN ./step7_script_sample.sh  
+# RUN ./step8_script_concordance.sh 
+# RUN ./step9_script_cleanup.sh
 
 WORKDIR /
 
